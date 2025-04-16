@@ -33,7 +33,6 @@ const monoFontNames = [
 ];
 
 export const fonts = {
-  // Sans-serif fonts
   Inter: "Inter, sans-serif",
   Roboto: "Roboto, sans-serif",
   "Open Sans": "Open Sans, sans-serif",
@@ -65,21 +64,22 @@ export const fonts = {
 };
 
 export const sansSerifFonts = Object.fromEntries(
-  Object.entries(fonts).filter(([key]) => sansSerifFontNames.includes(key))
+  Object.entries(fonts).filter(([key]) => sansSerifFontNames.includes(key)),
 );
 export const serifFonts = Object.fromEntries(
-  Object.entries(fonts).filter(([key]) => serifFontNames.includes(key))
+  Object.entries(fonts).filter(([key]) => serifFontNames.includes(key)),
 );
 export const monoFonts = Object.fromEntries(
-  Object.entries(fonts).filter(([key]) => monoFontNames.includes(key))
+  Object.entries(fonts).filter(([key]) => monoFontNames.includes(key)),
 );
 
 export const getAppliedThemeFont = (
   state: ThemeEditorState,
-  fontKey: keyof ThemeStyleProps
+  fontKey: keyof ThemeStyleProps,
 ): string | null => {
   const fontSans = state.styles.light[fontKey];
   // find key of font in fonts object based on value
+  // @ts-expect-error blah blah
   const key = Object.keys(fonts).find((key) => fonts[key].includes(fontSans));
   return key ? key : null;
 };
